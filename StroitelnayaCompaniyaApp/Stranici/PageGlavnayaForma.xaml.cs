@@ -33,17 +33,22 @@ namespace StroitelnayaCompaniyaApp.Stranici
 
         private void BtnStroimateriali_Click(object sender, RoutedEventArgs e)
         {
-
+            InfoNetRazdela();
         }
 
         private void BtnVidiMaterialov_Click(object sender, RoutedEventArgs e)
         {
-
+            InfoNetRazdela();
         }
 
         private void EdiniciIzmereniya_Click(object sender, RoutedEventArgs e)
         {
+            InfoNetRazdela();
+        }
 
+        private void InfoNetRazdela()
+        {
+            MessageBox.Show("Функционал всё ещё в разработке.", "Нет раздела", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

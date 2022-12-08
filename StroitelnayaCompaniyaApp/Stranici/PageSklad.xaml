@@ -23,7 +23,7 @@
 
             <TextBox x:Name="TbxPoisk" Grid.Column="0"
                      Style="{StaticResource TbxGlavniy}" Width="Auto"
-                     Text="Введите для поиска" Tag="Введите для поиска"/>
+                     Text="Введите для поиска по адресу" Tag="Введите для поиска по адресу"/>
 
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal">
@@ -44,8 +44,8 @@
         <DataGrid Grid.Row="1" x:Name="DtgdSkladi">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№ склада" Width="120" Binding="{Binding ID}"/>
-                <DataGridTextColumn Header="Адрес" Width="270" Binding="{Binding Adres}"/>
-                <DataGridTextColumn Header="Вид материалов" Width="230" Binding="{Binding VidStroimaterialovID}"/>
+                <DataGridTextColumn Header="Адрес" Width="300" Binding="{Binding Adres}"/>
+                <DataGridTextColumn Header="Вид материалов" Width="270" Binding="{Binding VidMaterialovText}"/>
                 <DataGridTextColumn Header="Расстояние" Width="150" Binding="{Binding Rasstoyanie}"/>
             </DataGrid.Columns>
         </DataGrid>

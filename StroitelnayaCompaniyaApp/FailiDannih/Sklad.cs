@@ -24,7 +24,9 @@ namespace StroitelnayaCompaniyaApp.FailiDannih
         public string Adres { get; set; }
         public int VidStroimaterialovID { get; set; }
         public int Rasstoyanie { get; set; }
-    
+
+        public string VidMaterialovText { get; set; }
+
         public virtual VidStroimaterialov VidStroimaterialov { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stroimaterial> Stroimaterial { get; set; }
