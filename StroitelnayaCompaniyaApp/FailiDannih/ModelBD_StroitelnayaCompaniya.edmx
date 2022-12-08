@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="z3_4_BalashovaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EdinicaIzmereniya">
+          <Key>
+            <PropertyRef Name="Kod" />
+          </Key>
+          <Property Name="Kod" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Naimenovaniye" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Sklad">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="VidStroimaterialovID" Type="int" Nullable="false" />
+          <Property Name="Rasstoyanie" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stroimaterial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Naimenovaniye" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EdinicaIzmereniyaKod" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Ostatok" Type="decimal" Precision="9" Scale="3" Nullable="false" />
+          <Property Name="SkladID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="VidStroimaterialov">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naimenovaniye" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Sklad_VidStroimaterialov">
+          <End Role="VidStroimaterialov" Type="Self.VidStroimaterialov" Multiplicity="1" />
+          <End Role="Sklad" Type="Self.Sklad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VidStroimaterialov">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sklad">
+              <PropertyRef Name="VidStroimaterialovID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stroimaterial_EdinicaIzmereniya">
+          <End Role="EdinicaIzmereniya" Type="Self.EdinicaIzmereniya" Multiplicity="1" />
+          <End Role="Stroimaterial" Type="Self.Stroimaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdinicaIzmereniya">
+              <PropertyRef Name="Kod" />
+            </Principal>
+            <Dependent Role="Stroimaterial">
+              <PropertyRef Name="EdinicaIzmereniyaKod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stroimaterial_Sklad">
+          <End Role="Sklad" Type="Self.Sklad" Multiplicity="1" />
+          <End Role="Stroimaterial" Type="Self.Stroimaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sklad">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Stroimaterial">
+              <PropertyRef Name="SkladID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="z3_4_BalashovaModelStoreContainer">
+          <EntitySet Name="EdinicaIzmereniya" EntityType="Self.EdinicaIzmereniya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sklad" EntityType="Self.Sklad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stroimaterial" EntityType="Self.Stroimaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VidStroimaterialov" EntityType="Self.VidStroimaterialov" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Sklad_VidStroimaterialov" Association="Self.FK_Sklad_VidStroimaterialov">
+            <End Role="VidStroimaterialov" EntitySet="VidStroimaterialov" />
+            <End Role="Sklad" EntitySet="Sklad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stroimaterial_EdinicaIzmereniya" Association="Self.FK_Stroimaterial_EdinicaIzmereniya">
+            <End Role="EdinicaIzmereniya" EntitySet="EdinicaIzmereniya" />
+            <End Role="Stroimaterial" EntitySet="Stroimaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stroimaterial_Sklad" Association="Self.FK_Stroimaterial_Sklad">
+            <End Role="Sklad" EntitySet="Sklad" />
+            <End Role="Stroimaterial" EntitySet="Stroimaterial" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="z3_4_BalashovaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EdinicaIzmereniya">
+          <Key>
+            <PropertyRef Name="Kod" />
+          </Key>
+          <Property Name="Kod" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Naimenovaniye" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Stroimaterial" Relationship="Self.FK_Stroimaterial_EdinicaIzmereniya" FromRole="EdinicaIzmereniya" ToRole="Stroimaterial" />
+        </EntityType>
+        <EntityType Name="Sklad">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VidStroimaterialovID" Type="Int32" Nullable="false" />
+          <Property Name="Rasstoyanie" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VidStroimaterialov" Relationship="Self.FK_Sklad_VidStroimaterialov" FromRole="Sklad" ToRole="VidStroimaterialov" />
+          <NavigationProperty Name="Stroimaterial" Relationship="Self.FK_Stroimaterial_Sklad" FromRole="Sklad" ToRole="Stroimaterial" />
+        </EntityType>
+        <EntityType Name="Stroimaterial">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Naimenovaniye" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EdinicaIzmereniyaKod" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Ostatok" Type="Decimal" Precision="9" Scale="3" Nullable="false" />
+          <Property Name="SkladID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EdinicaIzmereniya" Relationship="Self.FK_Stroimaterial_EdinicaIzmereniya" FromRole="Stroimaterial" ToRole="EdinicaIzmereniya" />
+          <NavigationProperty Name="Sklad" Relationship="Self.FK_Stroimaterial_Sklad" FromRole="Stroimaterial" ToRole="Sklad" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VidStroimaterialov">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naimenovaniye" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sklad" Relationship="Self.FK_Sklad_VidStroimaterialov" FromRole="VidStroimaterialov" ToRole="Sklad" />
+        </EntityType>
+        <Association Name="FK_Stroimaterial_EdinicaIzmereniya">
+          <End Role="EdinicaIzmereniya" Type="Self.EdinicaIzmereniya" Multiplicity="1" />
+          <End Role="Stroimaterial" Type="Self.Stroimaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EdinicaIzmereniya">
+              <PropertyRef Name="Kod" />
+            </Principal>
+            <Dependent Role="Stroimaterial">
+              <PropertyRef Name="EdinicaIzmereniyaKod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sklad_VidStroimaterialov">
+          <End Role="VidStroimaterialov" Type="Self.VidStroimaterialov" Multiplicity="1" />
+          <End Role="Sklad" Type="Self.Sklad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VidStroimaterialov">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Sklad">
+              <PropertyRef Name="VidStroimaterialovID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stroimaterial_Sklad">
+          <End Role="Sklad" Type="Self.Sklad" Multiplicity="1" />
+          <End Role="Stroimaterial" Type="Self.Stroimaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sklad">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Stroimaterial">
+              <PropertyRef Name="SkladID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="z3_4_BalashovaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EdinicaIzmereniya" EntityType="Self.EdinicaIzmereniya" />
+          <EntitySet Name="Sklad" EntityType="Self.Sklad" />
+          <EntitySet Name="Stroimaterial" EntityType="Self.Stroimaterial" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="VidStroimaterialov" EntityType="Self.VidStroimaterialov" />
+          <AssociationSet Name="FK_Stroimaterial_EdinicaIzmereniya" Association="Self.FK_Stroimaterial_EdinicaIzmereniya">
+            <End Role="EdinicaIzmereniya" EntitySet="EdinicaIzmereniya" />
+            <End Role="Stroimaterial" EntitySet="Stroimaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sklad_VidStroimaterialov" Association="Self.FK_Sklad_VidStroimaterialov">
+            <End Role="VidStroimaterialov" EntitySet="VidStroimaterialov" />
+            <End Role="Sklad" EntitySet="Sklad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stroimaterial_Sklad" Association="Self.FK_Stroimaterial_Sklad">
+            <End Role="Sklad" EntitySet="Sklad" />
+            <End Role="Stroimaterial" EntitySet="Stroimaterial" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="z3_4_BalashovaModelStoreContainer" CdmEntityContainer="z3_4_BalashovaEntities">
+          <EntitySetMapping Name="EdinicaIzmereniya">
+            <EntityTypeMapping TypeName="z3_4_BalashovaModel.EdinicaIzmereniya">
+              <MappingFragment StoreEntitySet="EdinicaIzmereniya">
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="Naimenovaniye" ColumnName="Naimenovaniye" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sklad">
+            <EntityTypeMapping TypeName="z3_4_BalashovaModel.Sklad">
+              <MappingFragment StoreEntitySet="Sklad">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="VidStroimaterialovID" ColumnName="VidStroimaterialovID" />
+                <ScalarProperty Name="Rasstoyanie" ColumnName="Rasstoyanie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stroimaterial">
+            <EntityTypeMapping TypeName="z3_4_BalashovaModel.Stroimaterial">
+              <MappingFragment StoreEntitySet="Stroimaterial">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naimenovaniye" ColumnName="Naimenovaniye" />
+                <ScalarProperty Name="EdinicaIzmereniyaKod" ColumnName="EdinicaIzmereniyaKod" />
+                <ScalarProperty Name="Ostatok" ColumnName="Ostatok" />
+                <ScalarProperty Name="SkladID" ColumnName="SkladID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="z3_4_BalashovaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VidStroimaterialov">
+            <EntityTypeMapping TypeName="z3_4_BalashovaModel.VidStroimaterialov">
+              <MappingFragment StoreEntitySet="VidStroimaterialov">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Naimenovaniye" ColumnName="Naimenovaniye" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

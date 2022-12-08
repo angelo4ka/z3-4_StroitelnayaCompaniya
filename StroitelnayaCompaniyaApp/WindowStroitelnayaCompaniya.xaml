@@ -1,0 +1,43 @@
+﻿<Window x:Class="StroitelnayaCompaniyaApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StroitelnayaCompaniyaApp"
+        mc:Ignorable="d"
+        Title="Строительная организация"
+        Height="700" Width="900" MinWidth="900" MinHeight="700">
+    
+    <Grid Background="{StaticResource OsnovnoiFon}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="200*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.RowSpan="2" Height="69" VerticalAlignment="Top"
+              Background="{StaticResource DopFon}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBox x:Name="TbxPanelAdmina" MaxLength="30"
+                         Width="150" Margin="30 0" Text="Код для входа"
+                         Style="{StaticResource TbxGlavniy}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button x:Name="BtnNazad" Width="150"
+                        Content="Назад" Click="BtnNazad_Click"/>
+                <Button x:Name="BtnVxod" Width="150"
+                        Margin="10 0 25 0"
+                        Content="Вход" Click="BtnVxod_Click"/>
+            </StackPanel>
+        </Grid>
+        
+        <Frame x:Name="FrmNavigaciya" Grid.Row="1" NavigationUIVisibility="Hidden">
+
+        </Frame>
+    </Grid>
+</Window>
