@@ -23,7 +23,7 @@
 
             <TextBox x:Name="TbxPoisk" Grid.Column="0"
                      Style="{StaticResource TbxGlavniy}" Width="Auto"
-                     Text="Введите для поиска по адресу" Tag="Введите для поиска по адресу"/>
+                     Text="Введите для поиска по адресу" Tag="Введите для поиска по адресу" GotFocus="TbxPoisk_GotFocus"/>
 
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal">
