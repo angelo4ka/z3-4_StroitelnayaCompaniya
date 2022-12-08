@@ -76,6 +76,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Stranici\PageStroimateriali.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowStroitelnayaCompaniya.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -124,6 +128,9 @@
     </Compile>
     <Compile Include="Stranici\PageSkladDobRedact.xaml.cs">
       <DependentUpon>PageSkladDobRedact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Stranici\PageStroimateriali.xaml.cs">
+      <DependentUpon>PageStroimateriali.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowStroitelnayaCompaniya.xaml.cs">
       <DependentUpon>WindowStroitelnayaCompaniya.xaml</DependentUpon>

@@ -33,7 +33,7 @@ namespace StroitelnayaCompaniyaApp.Stranici
 
         private void BtnStroimateriali_Click(object sender, RoutedEventArgs e)
         {
-            InfoNetRazdela();
+            NavigaciyaObj.frmNavigaciya.Navigate(new PageStroimateriali());
         }
 
         private void BtnVidiMaterialov_Click(object sender, RoutedEventArgs e)
